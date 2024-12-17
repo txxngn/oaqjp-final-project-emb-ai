@@ -26,9 +26,6 @@ def emotion_detector(text_to_analyse):
         joy_score = None
         sadness_score = None
 
-
-
-
     emotion_scores = {
         'anger': anger_score,
         'disgust': disgust_score,
@@ -37,8 +34,13 @@ def emotion_detector(text_to_analyse):
         'sadness': sadness_score
     }
 
-    dominant_emotion = max(emotion_scores, key=emotion_scores.get)
+    # Check if all scores are None
+    if all(score is None for score in emotion_scores.values()):
+            dominant_emotion = None
+    else:
+        dominant_emotion = max(emotion_scores, key=emotion_scores.get)
     
+
     return {    
         'anger': anger_score,
         'disgust': disgust_score,
